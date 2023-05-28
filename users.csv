@@ -1,0 +1,4 @@
+name,email,password,isAdmin,assignedBooks
+OMARR,oamr1@gmail.com,2222,true,
+OMARR,oamr2@gmail.com,2222,false,1;3
+HELLO,jenkies@gmail.com,123,false,5
