@@ -19,7 +19,11 @@ void authenticationFlow(vector <User> & users, vector <Book> & books) {
     cout << "3. Exit\n";
     cout << "Enter your choice: ";
     int choice;
-    cin >> choice;
+    while (!(cin >> choice)) {
+      cout << "Invalid choice. Try again.\n";
+      cin.clear();
+      cin.ignore(numeric_limits < streamsize > ::max(), '\n');
+    }
 
     switch (choice) {
     case 1:
@@ -44,19 +48,13 @@ void authenticationFlow(vector <User> & users, vector <Book> & books) {
 
   writeUsersToFile(users);
 
-  while (true) {
-    int option;
-    if (currentUser.isAdmin) {
-      getAdminOptions(currentUser, option);
-      if (option == 4) {
-        break; // Exit the loop and go back to authentication flow
-      }
-    } else {
-      getUserOptions(currentUser, option);
-      if (option == 3) {
-        break; // Exit the loop and go back to authentication flow
-      }
+  int option;
+  if (currentUser.isAdmin) {
+    getAdminOptions(currentUser, option);
+    if (option == 4) {
     }
+  } else {
+    getUserOptions(currentUser, option);
   }
 
   authenticationFlow(users, books); // Recursive call to go back to authentication flow
